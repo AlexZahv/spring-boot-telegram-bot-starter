@@ -2,13 +2,14 @@ package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
 import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodContainer;
 import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodController;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 
 public class TelegramBotHandler extends TelegramLongPollingBot {
 
-    private ControllerNotFoundHandler controllerNotFoundHandler;
     private String token;
     private String username;
 
@@ -47,12 +48,15 @@ public class TelegramBotHandler extends TelegramLongPollingBot {
         if (methodController != null) {
             methodController.getMethod().invoke(methodController.getBean(), update);
         } else {
-            controllerNotFoundHandler.error(update);
+            error(update);
         }
     }
 
-    public void setControllerNotFoundHandler(ControllerNotFoundHandler controllerNotFoundHandler) {
-        this.controllerNotFoundHandler = controllerNotFoundHandler;
+    private void error(Update update) throws TelegramApiException {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(update.getMessage().getChatId());
+        sendMessage.setText("Error occured during processing request");
+        sendMessage(sendMessage);
     }
 
     public void setToken(String token) {

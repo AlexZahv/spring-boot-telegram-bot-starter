@@ -1,7 +1,5 @@
 package com.github.alexzahv.springboottelegrambotstarter.configuration;
 
-import com.github.alexzahv.springboottelegrambotstarter.handlers.ControllerNotFoundHandler;
-import com.github.alexzahv.springboottelegrambotstarter.handlers.DefaultControllerNotFoundHandler;
 import com.github.alexzahv.springboottelegrambotstarter.handlers.TelegramBotHandler;
 import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramBotBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,16 +17,9 @@ public class TelegramBotAutoConfiguration {
     private String username;
 
     @Bean
-    @ConditionalOnMissingBean(ControllerNotFoundHandler.class)
-    public ControllerNotFoundHandler controllerNotFoundHandler() {
-        return new DefaultControllerNotFoundHandler();
-    }
-
-    @Bean
     @ConditionalOnMissingBean(TelegramBotHandler.class)
     public TelegramBotHandler botHandler() {
         TelegramBotHandler botHandler = new TelegramBotHandler();
-        botHandler.setControllerNotFoundHandler(controllerNotFoundHandler());
         botHandler.setUsername(username);
         botHandler.setToken(token);
         return botHandler;
