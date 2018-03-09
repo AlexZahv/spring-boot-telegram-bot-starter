@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.handlers;
+package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.exceptions.TelegramApiException;

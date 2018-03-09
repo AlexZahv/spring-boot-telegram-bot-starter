@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.initializr;
+package com.github.alexzahv.springboottelegrambotstarter.initializr;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

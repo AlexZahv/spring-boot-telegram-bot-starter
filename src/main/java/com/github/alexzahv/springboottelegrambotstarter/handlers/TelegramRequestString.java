@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.handlers;
+package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
 public class TelegramRequestString {
     private String mapping;

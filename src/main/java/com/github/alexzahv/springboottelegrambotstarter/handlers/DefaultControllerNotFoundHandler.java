@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.handlers;
+package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.api.methods.send.SendMessage;

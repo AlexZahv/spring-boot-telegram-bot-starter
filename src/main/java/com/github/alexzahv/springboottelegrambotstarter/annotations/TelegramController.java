@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.annotations;
+package com.github.alexzahv.springboottelegrambotstarter.annotations;
 
 import org.springframework.stereotype.Component;
 

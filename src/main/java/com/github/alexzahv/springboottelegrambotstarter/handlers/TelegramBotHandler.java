@@ -1,7 +1,7 @@
-package com.zahvalex.springboottelegrambotstarter.handlers;
+package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
-import com.zahvalex.springboottelegrambotstarter.initializr.TelegramApiMethodContainer;
-import com.zahvalex.springboottelegrambotstarter.initializr.TelegramApiMethodController;
+import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodContainer;
+import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodController;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 

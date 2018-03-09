@@ -1,7 +1,7 @@
-package com.zahvalex.springboottelegrambotstarter.initializr;
+package com.github.alexzahv.springboottelegrambotstarter.initializr;
 
-import com.zahvalex.springboottelegrambotstarter.annotations.TelegramController;
-import com.zahvalex.springboottelegrambotstarter.annotations.TelegramMessageMapping;
+import com.github.alexzahv.springboottelegrambotstarter.annotations.TelegramController;
+import com.github.alexzahv.springboottelegrambotstarter.annotations.TelegramMessageMapping;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
-package com.zahvalex.springboottelegrambotstarter.configuration;
+package com.github.alexzahv.springboottelegrambotstarter.configuration;
 
-import com.zahvalex.springboottelegrambotstarter.handlers.ControllerNotFoundHandler;
-import com.zahvalex.springboottelegrambotstarter.handlers.DefaultControllerNotFoundHandler;
-import com.zahvalex.springboottelegrambotstarter.handlers.TelegramBotHandler;
+import com.github.alexzahv.springboottelegrambotstarter.handlers.TelegramBotHandler;
+import com.github.alexzahv.springboottelegrambotstarter.handlers.ControllerNotFoundHandler;
+import com.github.alexzahv.springboottelegrambotstarter.handlers.DefaultControllerNotFoundHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

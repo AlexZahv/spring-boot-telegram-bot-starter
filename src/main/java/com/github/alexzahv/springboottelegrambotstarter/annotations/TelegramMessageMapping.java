@@ -1,4 +1,4 @@
-package com.zahvalex.springboottelegrambotstarter.annotations;
+package com.github.alexzahv.springboottelegrambotstarter.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
