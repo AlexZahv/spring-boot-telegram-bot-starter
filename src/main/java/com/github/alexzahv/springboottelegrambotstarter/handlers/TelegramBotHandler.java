@@ -2,14 +2,18 @@ package com.github.alexzahv.springboottelegrambotstarter.handlers;
 
 import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodContainer;
 import com.github.alexzahv.springboottelegrambotstarter.initializr.TelegramApiMethodController;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 
-public class TelegramBotHandler extends TelegramLongPollingBot {
+public class TelegramBotHandler extends TelegramLongPollingBot implements ApplicationContextAware {
 
+    private ApplicationContext applicationContext;
     private String token;
     private String username;
 
@@ -42,13 +46,18 @@ public class TelegramBotHandler extends TelegramLongPollingBot {
 
 
     private void invokeMethodController(Update update) throws Exception {
-        TelegramRequestString request = parseRequestString(update.getMessage().getText());
-        TelegramApiMethodController methodController =
-                TelegramApiMethodContainer.getInstance().getByMapping(request.getMapping());
-        if (methodController != null) {
-            methodController.getMethod().invoke(methodController.getBean(), update);
-        } else {
-            error(update);
+        String message = update.getMessage().getText();
+        if (message != null) {
+            TelegramRequestString request = parseRequestString(update.getMessage().getText());
+            TelegramApiMethodController methodController =
+                    TelegramApiMethodContainer.getInstance().getByMapping(request.getMapping());
+            if (methodController != null) {
+                methodController.getMethod().invoke(methodController.getBean(), update);
+            } else {
+                error(update);
+            }
+        } else if (update.getMessage().getDocument() != null) {
+            getFileHandler().handleUpload(update);
         }
     }
 
@@ -65,5 +74,15 @@ public class TelegramBotHandler extends TelegramLongPollingBot {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    private UploadFileHandler getFileHandler() {
+        return applicationContext.getBean(UploadFileHandler.class);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }
