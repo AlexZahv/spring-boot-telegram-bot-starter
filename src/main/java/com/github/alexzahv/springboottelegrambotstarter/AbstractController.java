@@ -1,6 +1,7 @@
 package com.github.alexzahv.springboottelegrambotstarter;
 
 import com.github.alexzahv.springboottelegrambotstarter.handlers.TelegramBotHandler;
+import com.github.alexzahv.springboottelegrambotstarter.handlers.TelegramRequestString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.api.methods.send.SendDocument;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -34,5 +35,11 @@ public abstract class AbstractController {
         document.setCaption(file.getName());
         document.setNewDocument(file);
         return botHandler.sendDocument(document);
+    }
+
+    protected TelegramRequestString parseRequestString(String message) {
+        message = message.trim();
+        String mapping = message.split(" ")[0];
+        return new TelegramRequestString(mapping, message.substring(mapping.length(), message.length()));
     }
 }
